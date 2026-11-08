@@ -1,0 +1,26 @@
+name: RequestLimiter
+
+on:
+  push:
+    paths: ['FairGate/**', '.github/workflows/request-limiter.yml']
+  pull_request:
+    paths: ['FairGate/**', '.github/workflows/request-limiter.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: FairGate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: FairGate/global.json
+      - run: dotnet restore
+      - run: dotnet build -c Release --no-restore
+      - run: dotnet test -c Release --no-build
+      - run: dotnet format --verify-no-changes --no-restore

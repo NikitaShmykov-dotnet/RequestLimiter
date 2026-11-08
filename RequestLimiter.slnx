@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/RequestLimiter/RequestLimiter.csproj" />
+  <Project Path="src/Backend/Backend.csproj" />
+  <Project Path="tests/RequestLimiter.Tests/RequestLimiter.Tests.csproj" />
+  <Project Path="tools/Load/Load.csproj" />
+</Solution>

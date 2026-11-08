@@ -1,0 +1,28 @@
+@gate = http://127.0.0.1:5070
+
+GET {{gate}}/health
+
+###
+GET {{gate}}/openapi/v1.json
+
+###
+POST {{gate}}/work?delayMs=80
+X-Api-Key: demo-normal
+Content-Type: text/plain
+
+hello
+
+###
+GET {{gate}}/bulk
+X-Api-Key: demo-aggressive
+
+###
+GET {{gate}}/work
+X-Client-Id: normal
+
+###
+GET {{gate}}/work?delayMs=1000
+X-Api-Key: demo-normal
+
+###
+GET {{gate}}/metrics
